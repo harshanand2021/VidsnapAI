@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 import uuid
 import os
 
-UPLOAD_FOLDER = '/user_uploads'
+UPLOAD_FOLDER = 'user_uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
@@ -27,7 +27,12 @@ def create():
             file = request.files[key]
             if file:
                 filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename, rec_id, filename))
+                if(not(os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], rec_id)))):
+                    os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], rec_id))
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], rec_id, filename))
+                # Capture the description and save it to file
+                with open(os.path.join(app.config['UPLOAD_FOLDER'], rec_id, "desc.txt"), "w") as f:
+                    f.write(desc)
             
     return render_template("create.html", myid=myid)
 
