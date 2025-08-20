@@ -2,6 +2,10 @@ from flask import Flask,flash, request,redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 import uuid
 import os
+import dotenv
+
+# Load environment variables
+dotenv.load_dotenv()
 
 UPLOAD_FOLDER = 'user_uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
