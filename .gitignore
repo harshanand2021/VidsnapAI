@@ -4,6 +4,9 @@ user_uploads/
 # vscode
 .vscode/
 
+# Environment variables
+.env
+
 # configuration
 config.py
 
