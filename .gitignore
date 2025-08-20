@@ -3,3 +3,13 @@ user_uploads/
 
 # vscode
 .vscode/
+
+# configuration
+config.py
+
+# cache
+__pycache__/
+
+# done files
+done.txt
+ffmpeg_command.txt
